@@ -1,0 +1,19 @@
+{
+    "name": "webcord",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./src/Webhook",
+    "dependencies": {
+        "request": "^2.75.0",
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Tyler0130/webcord.git"
+    },
+    "author": "Tyler0130",
+    "license": "GNU",
+    "bugs": {
+        "url": "https://github.com/Tyler0130/webcord/issues"
+    },
+    "homepage": "https://github.com/Tyler0130/webcord"
+}
