@@ -1,7 +1,7 @@
 const Request = require("request");
 const Constants = require("./util/Constants");
 
-class WebhookClient {
+class Webhook {
     constructor(data) {
         this.name = data.name;
         this.id = data.id;
@@ -16,7 +16,7 @@ class WebhookClient {
         };
     }
 
-    sendMessage(content) {
+    send(content) {
         return new Promise((resolve, reject) => {
             Request({
                 "method": "POST",
@@ -35,4 +35,4 @@ class WebhookClient {
     }
 }
 
-module.exports = WebhookClient;
+module.exports = Webhook;
