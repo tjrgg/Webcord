@@ -32,20 +32,22 @@ class User {
         });
     }
 
-    send(content) {
+    createWebhook(channelID, name, avatar) {
         return new Promise((resolve, reject) => {
             Request({
                 "method": "POST",
-                "url": Endpoints.post(this.id, this.token),
+                "url": Endpoints.user_create(channelID),
                 "headers": {
+                    "Authorization": this.token,
                     "Content-Type": "application/json"
                 },
                 "body": JSON.stringify({
-                    "content": content
+                    "name": name,
+                    "avatar": avatar
                 })
             }, (error, response, body) => {
                 if (error) return reject({error: error, response: response, body: body});
-                return resolve({response: response, body: body});
+                return resolve(response, body);
             });
         });
     }

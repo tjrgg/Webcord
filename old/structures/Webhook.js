@@ -1,5 +1,0 @@
-class Webhook {
-    constructor(data) {
-        
-    }
-}
