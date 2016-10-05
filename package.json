@@ -2,7 +2,7 @@
     "name": "Webcord",
     "version": "0.0.0",
     "description": "A helper library for Discord webhooks.",
-    "main": "./src/Discord",
+    "main": "./src/Webcord",
     "dependencies": {
         "request": "^2.75.0"
     },
