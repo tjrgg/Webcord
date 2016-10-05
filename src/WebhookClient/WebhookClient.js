@@ -58,6 +58,21 @@ class WebhookClient extends EventEmitter {
             });
         });
     }
+
+    delete() {
+        return new Promise((resolve, reject) => {
+            Request({
+                "method": "DELETE",
+                "url": Endpoints.delete(this.id, this.token),
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }, (error, response, body) => {
+                if (error) return reject({error: error, response: response, body: body});
+                return resolve({response: response, body: body});
+            });
+        });
+    }
 }
 
 module.exports = WebhookClient;
