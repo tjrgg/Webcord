@@ -6,5 +6,6 @@ const Endpoints = module.exports = {
 
     client_get: (webhookID, webhookToken) => `${API}/webhooks/${webhookID}/${webhookToken}`,
 
-    post: (webhookID, webhookToken) => `${API}/webhooks/${webhookID}/${webhookToken}`
+    post: (webhookID, webhookToken) => `${API}/webhooks/${webhookID}/${webhookToken}`,
+    delete: (webhookID, webhookToken) => `${API}/webhooks/${webhookID}/${webhookToken}`
 };
