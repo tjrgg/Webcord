@@ -1,9 +1,8 @@
-const EventEmitter = require("events").EventEmitter;
 const Request = require("request");
 const Endpoints = require("../Util/Endpoints");
 const Webhook = require("../Util/Webhook");
 
-class WebhookClient extends EventEmitter {
+class WebhookClient {
     connect(idOrUrl, token) {
         return new Promise((resolve, reject) => {
             let c_id, c_token;

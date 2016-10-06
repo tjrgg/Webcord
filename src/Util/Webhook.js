@@ -1,4 +1,3 @@
-const EventEmitter = require("events").EventEmitter;
 const Request = require("request");
 const Endpoints = require("./Endpoints");
 
@@ -35,7 +34,7 @@ class Webhook {
         });
     }
 
-    slack(content = {}) {
+    sendSlack(content = {}) {
         return new Promise((resolve, reject) => {
             Request({
                 "method": "POST",
