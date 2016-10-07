@@ -8,7 +8,7 @@ class WebhookClient {
     /**
         * Connects the client to the webhook.
         * @param {string} idOrUrl The ID of the webhook or the webhook URL.
-        * @param {string} token The token for the webhook. Only needed if an ID was provided instead of a URL.
+        * @param {string} [token] The token for the webhook. Only needed if an ID was provided instead of a URL.
         * @returns {Promise<string>}
         * @example
         * // connect using webhook url
