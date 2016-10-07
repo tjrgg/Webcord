@@ -1,13 +1,47 @@
-const Request = require("request");
-const Endpoints = require("../Util/Endpoints");
-const Webhook = require("../Util/Webhook");
 const Collection = require("../Util/Collection");
+const Endpoints = require("../Util/Endpoints");
+const Request = require("request");
+const Webhook = require("../Util/Webhook");
 
 class User {
     constructor(token) {
         this.token = token;
     }
 
+    /**
+        * Create a webhook.
+        * @param {string} channel ID of the channel for this webhook.
+        * @param {string} name Name for the new webhook.
+        * @param {base64} avatar base64 image for the webhook avatar.
+        * @returns {Promise<Webhook>}
+        */
+    createWebhook(channel, name, avatar) {
+        return new Promise((resolve, reject) => {
+            Request({
+                "method": "POST",
+                "url": Endpoints.webhooks(channel),
+                "headers": {
+                    "Authorization": this.token,
+                    "Content-Type": "application/json"
+                },
+                "body": JSON.stringify({
+                    "name": name,
+                    "avatar": avatar
+                })
+            }, (error, response, body) => {
+                if (error) return reject({error: error, response: response, body: body});
+                let webhook = JSON.parse(body);
+                if (webhook.code) return reject({response: response, body: body});
+                return resolve(new Webhook(webhook));
+            });
+        });
+    }
+
+    /**
+        * Fetch webhooks.
+        * @param {string} channelID The channel ID to fetch webhooks from.
+        * @returns {Promise<Webhook>}
+        */
     fetchWebhooks(channelID) {
         return new Promise((resolve, reject) => {
             Request({
@@ -31,27 +65,7 @@ class User {
         });
     }
 
-    createWebhook(channel, name, avatar) {
-        return new Promise((resolve, reject) => {
-            Request({
-                "method": "POST",
-                "url": Endpoints.webhooks(channel),
-                "headers": {
-                    "Authorization": this.token,
-                    "Content-Type": "application/json"
-                },
-                "body": JSON.stringify({
-                    "name": name,
-                    "avatar": avatar
-                })
-            }, (error, response, body) => {
-                if (error) return reject({error: error, response: response, body: body});
-                let webhook = JSON.parse(body);
-                if (webhook.code) return reject({response: response, body: body});
-                return resolve(new Webhook(webhook));
-            });
-        });
-    }
+
 }
 
 module.exports = User;

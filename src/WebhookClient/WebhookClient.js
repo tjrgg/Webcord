@@ -2,7 +2,28 @@ const Request = require("request");
 const Endpoints = require("../Util/Endpoints");
 const Webhook = require("../Util/Webhook");
 
+/** Starting point for connecting to a webhook. */
 class WebhookClient {
+
+    /**
+        * Connects the client to the webhook.
+        * @param {string} idOrUrl The ID of the webhook or the webhook URL.
+        * @param {string} token The token for the webhook. Only needed if an ID was provided instead of a URL.
+        * @returns {Promise<string>}
+        * @example
+        * // connect using webhook url
+        * const hook = "";
+        * WebhookClient.connect(hook).then(webhook => {
+        *   // do stuff
+        * });
+        * @example
+        * // connect using id and token
+        * const id = "";
+        * const token = "";
+        * WebhookClient.connect(id, token).then(webhook => {
+        *   // do stuff
+        * });
+        */
     connect(idOrUrl, token) {
         return new Promise((resolve, reject) => {
             let c_id, c_token;

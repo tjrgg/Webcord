@@ -1,13 +1,46 @@
 const Request = require("request");
 const Endpoints = require("./Endpoints");
 
+/**
+    * Represents the webhook.
+    */
 class Webhook {
+
     constructor(data) {
+        /**
+            * The name of the webhook.
+            * @type {string}
+            */
         this.name = data.name;
+
+        /**
+            * The ID of the webhook.
+            @type {string}
+            */
         this.id = data.id;
+
+        /**
+            * The token of the webhook.
+            @type {string}
+            */
         this.token = data.token;
+
+        /**
+            * The ID of the guild the webhook belongs to.
+            @type {string}
+            */
         this.guild = data.guild_id;
+
+        /**
+            * The ID of the channel the webhook belongs to.
+            @type {string}
+            */
         this.channel = data.channel_id;
+
+        /**
+            * The user that created the webhook.
+            @type {User}
+            */
         this.creator = data.user ? {
             username: data.user.username,
             discriminator: data.user.discriminator,
@@ -16,6 +49,11 @@ class Webhook {
         } : null;
     }
 
+    /**
+        * Sends a message via the webhook.
+        * @param {string} content The content of the message to send.
+        * @returns {Promise<object>}
+        */
     send(content) {
         return new Promise((resolve, reject) => {
             Request({
@@ -34,6 +72,11 @@ class Webhook {
         });
     }
 
+    /**
+        * Sends a message via the webhook via the Slack endpoint.
+        * @param {object} content The content of the message to send.
+        * @returns {Promise<object>}
+        */
     sendSlack(content = {}) {
         return new Promise((resolve, reject) => {
             Request({
@@ -50,6 +93,11 @@ class Webhook {
         });
     }
 
+    /**
+        * Edit various properties of the webhook.
+        * @param {object} options The options to modify the webhook with.
+        * @returns {Promise<object>}
+        */
     manage(options = {}) {
         if (!options.name) options.name = this.name;
         return new Promise((resolve, reject) => {
@@ -67,6 +115,10 @@ class Webhook {
         });
     }
 
+    /**
+        * Delete the webhook.
+        * @returns {Promise<object>}
+        */
     delete() {
         return new Promise((resolve, reject) => {
             Request({
