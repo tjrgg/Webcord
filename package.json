@@ -1,6 +1,6 @@
 {
     "name": "Webcord",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "A helper library for Discord webhooks.",
     "main": "./src/Webcord",
     "dependencies": {
@@ -8,12 +8,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Tyler0130/webcord"
+        "url": "https://github.com/Tyler0130/Webcord"
     },
     "author": "Tyler0130",
     "license": "GNU",
     "bugs": {
         "url": "https://github.com/Tyler0130/webcord/issues"
     },
-    "homepage": ""
+    "homepage": "https://tyler0130.github.io/Webcord/"
 }
