@@ -18,7 +18,7 @@ class Styles  {
         */
     code(text, lang) {
         let mrkdwn = '```';
-        return `${mrkdwn}${lang}\n${text}${mrkdwn}`;
+        return `${mrkdwn}${lang}\n${text}\n${mrkdwn}`;
     }
 
     /**
