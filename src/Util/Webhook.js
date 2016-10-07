@@ -73,7 +73,30 @@ class Webhook {
     }
 
     /**
-        * Sends a message via the webhook via the Slack endpoint.
+        * Sends a message via the webhook in a codeblock.
+        * @param {string} content The content of the message to send.
+        * @returns {Promise<object>}
+        */
+    sendCode(content) {
+        return new Promise((resolve, reject) => {
+            Request({
+                "method": "POST",
+                "url": Endpoints.webhook(this.id, this.token),
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": JSON.stringify({
+                    "content": `\`\`\`${content}\`\`\``
+                })
+            }, (error, response, body) => {
+                if (error) return reject({error: error, response: response, body: body});
+                return resolve({response: response, body: body});
+            });
+        });
+    }
+
+    /**
+        * Sends a message via the webhook using the Slack endpoint.
         * @param {object} content The content of the message to send.
         * @returns {Promise<object>}
         */
