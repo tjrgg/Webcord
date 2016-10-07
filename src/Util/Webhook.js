@@ -117,8 +117,15 @@ class Webhook {
     }
 
     /**
+        * The options to change a webhook.
+        * @property {string} name The new name to give the webhook.
+        * @property {base64} avatar The new avatar to give the webhook.
+        * @typedef {Object} ManageOptions
+        */
+
+    /**
         * Edit various properties of the webhook.
-        * @param {object} options The options to modify the webhook with.
+        * @param {ManageOptions} options The options to modify the webhook with.
         * @returns {Promise<object>}
         */
     manage(options = {}) {
