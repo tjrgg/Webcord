@@ -13,11 +13,12 @@ class Styles  {
     /**
         * Put text in codeblock.
         * @param {string} text The text to put in a codeblock.
+        * @param {string} lang The language to send the codeblock in.
         * @returns {string}
         */
-    code(text) {
+    code(text, lang) {
         let mrkdwn = '```';
-        return mrkdwn.concat(text, mrkdwn);
+        return `${mrkdwn}${lang}\n${text}${mrkdwn}`;
     }
 
     /**
