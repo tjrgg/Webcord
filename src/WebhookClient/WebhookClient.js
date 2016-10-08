@@ -28,7 +28,7 @@ class WebhookClient {
         return new Promise((resolve, reject) => {
             let c_id, c_token;
             if (!token) {
-                let match = new RegExp(/https:\/\/discordapp\.com\/api\/(v6)?webhooks\/(.+)\/(.+)/gi).exec(idOrUrl);
+                let match = new RegExp(/https:\/\/(canary\.)?discordapp\.com\/api\/(v6)?webhooks\/(.+)\/(.+)/gi).exec(idOrUrl);
                 c_id = match[2];
                 c_token = match[3];
             } else {
