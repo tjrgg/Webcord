@@ -55,6 +55,7 @@ class User {
                 if (error) return reject({error: error, response: response, body: body});
                 let webhooks = JSON.parse(body);
                 if (webhooks.code) return reject({response: response, body: body});
+                if (!webhooks) return resolve([]);
                 let Webhooks = new Collection();
                 webhooks.map(webhook => {
                     let hook = new Webhook(webhook);
