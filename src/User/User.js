@@ -4,8 +4,9 @@ const Request = require("request");
 const Webhook = require("../Util/Webhook");
 
 class User {
-    constructor(token) {
+    constructor(token, bot = false) {
         this.token = token;
+        if (bot && !this.token.startsWith("Bot ")) token = `Bot ${token}`;
     }
 
     /**
@@ -55,7 +56,7 @@ class User {
                 if (error) return reject({error: error, response: response, body: body});
                 let webhooks = JSON.parse(body);
                 if (webhooks.code) return reject({response: response, body: body});
-                if (!webhooks) return resolve([]);
+                if (!webhooks.length) return resolve([]);
                 let Webhooks = new Collection();
                 webhooks.map(webhook => {
                     let hook = new Webhook(webhook);
