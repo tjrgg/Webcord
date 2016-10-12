@@ -4,9 +4,9 @@ const Request = require("request");
 const Webhook = require("../Util/Webhook");
 
 class User {
-    constructor(token, bot = false) {
+    constructor(token, bot) {
         this.token = token;
-        if (bot && typeof bot === Boolean && !this.token.startsWith("Bot ")) token = `Bot ${token}`;
+        if (bot && bot === true && !this.token.startsWith("Bot ")) this.token = `Bot ${this.token}`;
     }
 
     /**
@@ -32,7 +32,7 @@ class User {
             }, (error, response, body) => {
                 if (error) return reject({error: error, response: response, body: body});
                 let webhook = JSON.parse(body);
-                if (webhook.code) return reject({response: response, body: body});
+                if (String(webhook.code)) return reject({response: response, body: body});
                 return resolve(new Webhook(webhook));
             });
         });
@@ -55,8 +55,7 @@ class User {
             }, (error, response, body) => {
                 if (error) return reject({error: error, response: response, body: body});
                 let webhooks = JSON.parse(body);
-                if (webhooks.code) return reject({response: response, body: body});
-                if (!webhooks.length) return resolve([]);
+                if (String(webhooks.code)) return reject({response: response, body: body});
                 let Webhooks = new Collection();
                 webhooks.map(webhook => {
                     let hook = new Webhook(webhook);
