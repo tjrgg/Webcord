@@ -6,7 +6,7 @@ const Webhook = require("../Util/Webhook");
 class User {
     constructor(token, bot = false) {
         this.token = token;
-        if (bot && !this.token.startsWith("Bot ")) token = `Bot ${token}`;
+        if (bot && typeof bot === Boolean && !this.token.startsWith("Bot ")) token = `Bot ${token}`;
     }
 
     /**
