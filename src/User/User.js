@@ -32,7 +32,7 @@ class User {
             }, (error, response, body) => {
                 if (error) return reject({error: error, response: response, body: body});
                 let webhook = JSON.parse(body);
-                if (String(webhook.code)) return reject({response: response, body: body});
+                if (typeof webhook.code !== "undefined") return reject({response: response, body: body});
                 return resolve(new Webhook(webhook));
             });
         });
@@ -55,7 +55,7 @@ class User {
             }, (error, response, body) => {
                 if (error) return reject({error: error, response: response, body: body});
                 let webhooks = JSON.parse(body);
-                if (String(webhooks.code)) return reject({response: response, body: body});
+                if (typeof webhooks.code !== "undefined") return reject({response: response, body: body});
                 let Webhooks = new Collection();
                 webhooks.map(webhook => {
                     let hook = new Webhook(webhook);
