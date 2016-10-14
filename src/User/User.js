@@ -56,7 +56,7 @@ class User {
                 if (error) return reject({error: error, response: response, body: body});
                 let webhooks = JSON.parse(body);
                 if (typeof webhooks.code !== "undefined") return reject({response: response, body: body});
-                if (typeof webhooks !== "array") return reject({ response, body: webhooks });
+                if (!Array.isArray(webhooks)) return reject({response: response, body: body});
                 let Webhooks = new Collection();
                 webhooks.map(webhook => {
                     let hook = new Webhook(webhook);
